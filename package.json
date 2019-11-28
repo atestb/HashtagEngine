@@ -1,0 +1,19 @@
+{
+  "name": "hashtagengine",
+  "version": "1.0.0",
+  "description": "Replace strings with strings",
+  "main": "HashtagEngine.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atestb/HashtagEngine.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/atestb/HashtagEngine/issues"
+  },
+  "homepage": "https://github.com/atestb/HashtagEngine#readme"
+}
