@@ -1,20 +1,36 @@
+const fs = require('fs');
+
 module.exports = class HashtagEngine {
 
     constructor(templateString) {
         this.templatedString = templateString;
     }
+
     static fromString(templateString) {
         return new HashtagEngine(templateString);
     }
 
-    replace(objKeyValueDictionary) {
-        for (let key in objKeyValueDictionary) {
-            if (objKeyValueDictionary.hasOwnProperty(key)) {
-                this.templatedString = this.templatedString.replace(new RegExp(`#_${key}_#`, `g`), function(match) {
-                    return objKeyValueDictionary[key];
+    static replaceInFile(filePath, dictionary) {
+        let fileContent = fs.readFileSync(filePath).toString('utf8');
+        let templated = HashtagEngine.replaceLogic(dictionary, fileContent);
+        fs.writeFileSync(filePath, templated);
+        return templated;
+    }
+
+    static replaceLogic (dictionary, startString) {
+        let result = startString;
+        for (let key in dictionary) {
+            if (dictionary.hasOwnProperty(key)) {
+                result = result.replace(new RegExp(`#_${key}_#`, `g`), function(match) {
+                    return dictionary[key];
                 })
             }
         }
+        return result;
+    }
+
+    replace(objKeyValueDictionary) {
+        this.templatedString = HashtagEngine.replaceLogic(objKeyValueDictionary, this.templatedString);
         return this;
     }
 

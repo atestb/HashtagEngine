@@ -4,7 +4,7 @@
   "description": "Replace strings with strings",
   "main": "HashtagEngine.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./test/TestRunner.js"
   },
   "repository": {
     "type": "git",
